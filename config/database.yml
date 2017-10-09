@@ -1,0 +1,20 @@
+default: &default
+ adapter: postgresql
+ encoding: unicode
+ username: pguser
+ password: "satyr123"
+ pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+ host: localhost
+
+development:
+  <<: *default
+  database: mercadolibre_proy_development
+  test:
+    <<: *default
+    database: mercadolibre_proy_test
+    url: <%= ENV['DATABASE_URL'] %>
+  production:
+    <<: *default
+    database: mercadolibre_proy_production
+    username: mercadolibre_proy
+    password: <%= ENV['MERCADOLIBRE_PROY_DATABASE_PASSWORD'] %>
